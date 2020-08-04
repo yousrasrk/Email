@@ -1,0 +1,184 @@
+
+<!--{{email1.id}}
+{{email1.sendet}}
+{{email1.category}}-->
+
+<div > 
+ 
+    <mat-card style="height: 680px;"class="example-card" class="card">
+    
+
+            <div style="padding:10px;border-bottom:1px solid #E0E0E0;margin-bottom:15px;">
+
+                        <div  style="padding-top:20px;margin-bottom:20px;" class="title">{{email1.object}}XXXXXXXXXXX ....... 
+                           
+                    </div>
+                    <div class="container" fcLayout.xs="column">
+
+                    <div  fxFlex="55%"  >
+                        <div>  
+                            <div class="loop" *ngFor="let itemp of email1.category.dict.Product "> 
+                            <span ><span class="LabelG">
+                            <mat-icon class="LabelI" style="color:red;"  >label_outline</mat-icon>
+                            <span class="LabelPr" >&nbsp; &nbsp; Product : <span class="LabelPr">{{itemp.Prediction}} =></span></span>
+                            </span></span>
+
+                            <span style="color:red;"class="LabelPc">  {{itemp.Probability | percent}}</span>
+                            </div>
+                                            
+
+                                <div class="loop" *ngFor="let itemp of email1.category.dict.Issue "> 
+                                <span><span class="LabelG">
+                                <mat-icon   class="LabelI" style="color:green;" *ngIf="category" >label_outline</mat-icon>
+                            <span class="LabelPr">&nbsp; &nbsp; Issue : {{itemp.Prediction}}  =></span>
+
+                            </span>
+                                    
+                                </span>
+                                <span  class="LabelPc" style="color:green;">{{itemp.Probability | percent }}</span>
+
+                                </div>
+                                            
+                                </div>
+                            
+                            
+                            
+                            
+                            </div>     
+                                
+                           <!-- <div fxFlex="35%" >
+                                    <button  class="btnclassify" mat-raised-button color="primary">Reclassify</button>
+                                    
+                            </div> -->
+          <!--  <button  (click)="starred(email1,email1.filter.Starred)" mat-icon-button >
+ <mat-icon  style="margin-bottom:100px;" [ngStyle]="{color:getColor(email1.filter.Starred)}" >
+    <span style="font-size:40px;">star_outline</span></mat-icon>
+                                                          </button>-->
+                        <!--    {{email1.filter.Important}}
+                            {{email1.filter.Starred}}-->
+<!--
+                                     
+ <div style="margin-top:-15;">
+ <button  (click)="showDetail()"  style=" color:#3F51B5;padding:0px;"mat-flat-button>
+    <span style=" color:#3F51B5;border-bottom:solid 1px #3F51B5;">{{value}}</span>
+</button> 
+                   
+                        
+                <div *ngIf="showme" > <h4>{{s[0]}}</h4></div>      
+              <div *ngIf="hideme"></div>        
+                  
+                  </div>
+                -->
+
+                        </div> 
+                    </div>
+
+            
+                <!--   <div style="padding:10px;">
+                    
+                        <div  style="padding-top:20px;margin-bottom:20px;">
+                            <span class="aligned-with-icon" style="color:#000;" class="title"></span >
+                        
+                        </div>   
+                        </div>-->
+
+                    <mat-card-header  style="padding:10px;"> 
+                
+
+                        <img mat-card-avatar class="example-header-image" src="/assets/images/image1.jpg">
+                        <span style="padding-left:5px;"><h3>{{email1.firstName}}&nbsp;{{email1.lastName}}</h3></span >
+                                    
+                            <span style="margin-left:470px;margin-top:-30px;color:#000;"> 
+                                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                  </button>
+                                  <mat-menu #menu="matMenu">
+                                    <button mat-menu-item (click)="onCreate1(email1)">
+                                      <mat-icon style="margin-top:-50px;">reply</mat-icon>
+                                      <span>Reply</span>
+                                    </button>
+                                    <button mat-menu-item (click)="onCreate2(email1)">
+                                      <mat-icon style="margin-top:-50px;">forward</mat-icon>
+                                      <span>Forward</span>
+                                    </button>
+                                    <button mat-menu-item [matMenuTriggerFor]="folder">
+                                        <mat-icon style="margin-top:-50px;">folder_outline</mat-icon>
+                                        <span>send to </span>
+                                      </button>
+                                      <button mat-menu-item [matMenuTriggerFor]="label">
+                                        <mat-icon style="margin-top:-50px;">label_outline</mat-icon>
+                                        <span>send to</span>
+                                      </button>
+                                    
+                                    <button mat-menu-item (click)="delete(email1)">
+                                        <mat-icon style="margin-top:-50px;">delete</mat-icon>
+                                        <span>Delete</span>
+                                      </button>
+                                  </mat-menu>
+                                  <mat-menu #folder="matMenu">
+                                    <button mat-menu-item (click)="SendTo(email1,'Inbox')">Inbox</button>
+                                    <button mat-menu-item (click)="SendTo(email1,'Sent')">Sent</button>
+                                    <button mat-menu-item (click)="SendTo(email1,'Draft')">Draft</button>
+                                    <button mat-menu-item (click)="SendTo(email1,'Trash')">Trash</button>
+                                   
+                                  </mat-menu>
+                                  <mat-menu #label="matMenu">
+                                    <button mat-menu-item  [matMenuTriggerFor]="Product">
+                                        <mat-icon style="margin-top:-50px;"><span style="color:red;">label_outline</span></mat-icon>
+                                        <span>Product</span></button>
+                                        <button mat-menu-item >
+                                            <mat-icon   style="color:green;"style="margin-top:-50px;"><span   style="color:green;">label_outline</span></mat-icon>
+                                            <span>Issue</span></button>                                 
+                                   
+                                  </mat-menu>
+                                  <mat-menu #Product="matMenu">
+                                    <button mat-menu-item (click)="SendToLabel(email1,'Mortgage')">Mortgage</button>
+            
+                                   
+                                  </mat-menu>
+                                    <!------------------------>
+
+
+
+
+
+
+
+                            </span>
+                        <mat-card-title>
+                                  
+                           <!-- <a  mat-list-item>   
+                                <button  class="button1" mat-menu-item color="primary" (click)="onCreate()">
+                                  <mat-icon>add_outline</mat-icon>Compose</button>
+                              </a>    --> 
+            </mat-card-title>
+            <mat-card-subtitle>
+                
+             </mat-card-subtitle>
+
+        </mat-card-header>
+    
+            <!-- <a mat-flat-button (click)="showDetail()"  style=" background-color:red;color:#3F51B5;border-bottom:solid 1px #3F51B5;padding:0px;border-bottom:-0px;" target="_blank">{{value}}</a>-->
+              
+               
+            <div style="margin-top:-15;">
+                <button  (click)="showDetail()"  style=" color:#3F51B5;padding:0px;"mat-flat-button><span style=" color:#3F51B5;border-bottom:solid 1px #3F51B5;">{{value}}</span></button> 
+                   
+                        
+                <div *ngIf="showme" >
+                   <h4>{{s[0]}}</h4>
+                  
+                  <h4>{{s[1]}}</h4>
+                </div>      
+              <div *ngIf="hideme"></div>        
+                  
+                  </div>
+       
+            <mat-card-content style="margin-top:30px;">
+                <p>{{email1.content}}
+                 
+                 </p>
+                
+             </mat-card-content>      
+    </mat-card>
+</div>           
