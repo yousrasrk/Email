@@ -32,7 +32,7 @@ emails:Email[]
 folder:string=""
 length:number=0;
 
-//get emails list basing on folder
+//get email list 
 
     ngOnInit(): void {
       this.EmailService.refreshemail.subscribe(()=>{
