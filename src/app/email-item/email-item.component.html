@@ -1,0 +1,103 @@
+
+
+   
+<div >
+    <div *ngIf="email.folder!='Draft'">
+     <a  [routerLink]="['emails',email.id]"    [routerLinkActive]="['active']" > 
+        <mat-card class="example-card" class="card"  [ngStyle]="{'background-color': Seen(email)}">
+           
+            <div> 
+               
+                <div style=" width:320px;">
+                    <div>
+                        <span class="aligned-with-icon">
+                            
+                            <span fxFlex="50%" >
+
+                            <h3> {{email.firstName}}&nbsp;{{email.lastName}}</h3></span>
+                            <span fxFlex="50%" >
+                             <h4>  <span *ngIf="email.date" class="date">{{email.date | date:'short'}}</span></h4>
+                            </span>
+  
+                        </span >
+                    </div>
+                            
+                </div>
+                <div>
+                
+                    <div *ngIf="email.category">             <!--Product-->
+                        <div class="loop" *ngFor="let itemp of email.category.dict.Product "> 
+                         
+                            <span class="LabelG">
+                                <span *ngIf="itemp.Probability">
+
+                            <mat-icon class="LabelI" [ngStyle]="{'color': getColor(itemp.Probability)}"  >circle</mat-icon>
+                                </span>
+                                <span class="item">{{itemp.Prediction}}</span>
+                            </span>               
+                        </div>
+                        <div class="loop" *ngFor="let itemp of email.category.dict.Issue "> 
+                            <span class="LabelG">
+                                <span *ngIf="itemp.Probability">
+                                <mat-icon   class="LabelI" [ngStyle]="{'color': getColor(itemp.Probability)}"  >circle</mat-icon>
+                            </span>
+                                <span class="item"> {{itemp.Prediction}}</span>
+                               
+                            </span>
+                                    
+                        </div>
+                    </div>       
+                </div>
+            
+            </div>
+            <div>
+               <h3><p class="object">{{email.object| slice :0:25}}</p>
+                <p >{{email.content| slice :0:25}}</p></h3> 
+               </div>      
+        </mat-card>
+    </a>           
+</div>
+<div *ngIf="email.folder=='Draft'">
+    <a   (click)="onCreate()"> 
+        <mat-card class="example-card" class="card"  class="card1">
+            <mat-card-header> 
+                <mat-card-title>
+                    <div>
+                        <span class="aligned-with-icon">
+                            <h3> {{email.firstName}}&nbsp;{{email.lastName}}
+                            </h3>
+                        </span >
+                    </div>
+                            
+                </mat-card-title>
+                <mat-card-subtitle>
+                
+                    <div *ngIf="email.category">             <!--Product-->
+                        <div class="loop" *ngFor="let itemp of email.category.dict.Product "> 
+                         
+                            <span class="LabelG">
+                                <mat-icon class="LabelI" [ngStyle]="{'color': getColor(itemp.Probability)}"  >circle</mat-icon>
+                                <span class="item">{{itemp.Prediction}}</span>
+                            </span>               
+                        </div>
+                        <div class="loop" *ngFor="let itemp of email.category.dict.Issue "> 
+                            <span class="LabelG">
+                                <mat-icon   class="LabelI" [ngStyle]="{'color': getColor(itemp.Probability)}"  >circle</mat-icon>
+                                <span class="item"> {{itemp.Prediction}}</span>
+                            </span>
+                                    
+                        </div>
+                    </div>       
+                </mat-card-subtitle>
+            
+            </mat-card-header>
+            <mat-card-content>
+                <p>{{email.object| slice :0:25}}</p>
+                <p >{{email.content| slice :0:25}}</p>
+            </mat-card-content>      
+        </mat-card>
+    </a>           
+    </div>
+
+
+</div>

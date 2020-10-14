@@ -1,0 +1,36 @@
+
+
+<div class="container" class="container1" fcLayout.xs="column">
+
+  <div fxFlex="100%">
+
+      <div class="container" class="containerHeight" fcLayout.xs="column">
+
+         <div  fxFlex="30%" class="borderstyle">
+              <!--scrolling--->
+              <h2 class="folder">{{folder}}</h2>
+
+              <cdk-virtual-scroll-viewport [itemSize]="length" style="height: 840px;">
+              
+                  <app-email-item *cdkVirtualFor="let email of emails" style="height:100px;"  class="number"
+                      [email]="email" >
+                  </app-email-item>
+                              
+              </cdk-virtual-scroll-viewport>
+          </div>
+          
+        <div fxFlex="60%" class="fx">
+          <router-outlet></router-outlet>
+        </div>
+
+        <div fxFlex="10%" class="fxcolor"></div>
+      </div>
+  </div>
+</div>
+
+
+          
+    
+
+
+

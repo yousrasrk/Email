@@ -1,0 +1,93 @@
+
+  <div>
+    <div>
+      <h2 mat-dialog-title> <span class="matdialogcolor">New Message </span>
+    
+        <button   class="close" (click)="Action('Draft')" mat-icon-button  aria-label="Example icon button with a heart icon">
+          <mat-icon>close</mat-icon>
+        </button>
+      </h2>
+    </div>
+
+    <mat-dialog-content >
+       <div *ngIf="data.email.folder=='Draft'">
+        <div>  
+          <div class="loop" *ngFor="let itemp of data.email.category.dict.Product "> 
+            <span >
+               <span class="LabelPr" >&nbsp; &nbsp; Product : <span class="LabelPr">{{itemp.Prediction}} =></span></span>
+             </span>
+             <span *ngIf="itemp.Probability">
+              <span [ngStyle]="{'color': getColor(itemp.Probability)}" class="LabelPc">  {{itemp.Probability | percent}}</span>
+              </span>
+            </div>
+          <div class="loop" *ngFor="let itemp of data.email.category.dict.Issue "> 
+            <span>
+              <span class="LabelG">
+                <span class="LabelPr">&nbsp; &nbsp; Issue : {{itemp.Prediction}}  =></span>
+              </span>
+            </span>
+            <span *ngIf="itemp.Probability">
+
+              <span  class="LabelPc" [ngStyle]="{'color': getColor(itemp.Probability)}">{{itemp.Probability | percent }}</span>
+            </span>
+
+          </div>
+
+          <form style="width:750px;"  [formGroup]="EmailForm" (ngSubmit)="onSubmit()">
+            <mat-form-field style="width:700px;" appearance="outline">
+              <mat-label>To</mat-label>
+                <input formControlName="To" matInput  placeholder="To" required>
+            </mat-form-field>
+            <br>
+            <mat-form-field style="width:700px;" appearance="outline">
+                <mat-label>object</mat-label>
+                <input formControlName="object"  matInput placeholder="Cc" >
+            </mat-form-field>
+            <mat-form-field  style="width:700px;" appearance="outline">
+              <mat-label>Message</mat-label>
+                <textarea formControlName="Message" matInput></textarea>
+            </mat-form-field>
+            <div class="button-row">
+              <button (click)="onSubmit()"[disabled]="EmailForm.invalid" mat-raised-button class="colorIcon">Send</button>
+              <button (click)="Action('Trash')" mat-icon-button class="colorIcon" aria-label="Example icon button with a heart icon">
+                 <mat-icon>delete_outline</mat-icon>
+              </button>
+            </div>
+          </form>
+        </div>
+       </div>
+
+       <div *ngIf="data.email.folder!='Draft'">
+          <div>  
+             <form style="width:750px;"  [formGroup]="EmailForm" (ngSubmit)="onSubmit()">
+                <mat-form-field style="width:700px;" appearance="outline">
+                    <mat-label>To</mat-label>
+                      <input formControlName="To" matInput  placeholder="To" required>
+                </mat-form-field>
+                  <br>
+                <mat-form-field style="width:700px;" appearance="outline">
+                    <mat-label>object</mat-label>
+                    <input formControlName="object"  matInput placeholder="Cc" >
+                </mat-form-field>
+                <mat-form-field  style="width:700px;" appearance="outline">
+                  <mat-label>Message</mat-label>
+                  <textarea formControlName="Message" matInput></textarea>
+                </mat-form-field>
+
+                <div class="button-row">
+
+
+                  <button (click)="onSubmit()"[disabled]="EmailForm.invalid" mat-raised-button style="background-color:#47b6e5;color:#fff;">Send</button>
+
+                  <button (click)="Action('Trash')" mat-icon-button style="color:#47b6e5;" aria-label="Example icon button with a heart icon">
+                    <mat-icon>delete_outline</mat-icon>
+                  </button>
+
+                </div>
+               </form>
+           </div>
+         </div>
+    </mat-dialog-content>
+
+
+  </div>

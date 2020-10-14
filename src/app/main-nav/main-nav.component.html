@@ -1,87 +1,78 @@
-<mat-sidenav-container style="border-color:#3f51b5;" class="sidenav-container"x>
-  <mat-sidenav style="border-color:#3f51b5; width:250px;" #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-   <mat-toolbar style="background-color: #3f51b5;border-color: #3f51b5;color:#fff"> 
-  
-  
-  </mat-toolbar>
-   <mat-toolbar style="background-color: #3f51b5;border-color: #3f51b5;color:#fff"> </mat-toolbar>
-  
-    <mat-nav-list >
-    
-      <a  mat-list-item>   
-        <button  class="button1" mat-raised-button color="primary" (click)="onCreate()">
-          <mat-icon>add_outline</mat-icon>Compose</button>
-      </a>
-      <mat-toolbar class="title"mat-list-item>Folders</mat-toolbar>
-      <a mat-list-item  routerLink="/Inbox" [routerLinkActive]="['active']" routerLinkActiveOptions="{exact : true}">
-           <mat-icon class="iconL">inbox_outline</mat-icon>inbox</a>
- 
-      <a mat-list-item   routerLink="/Sent" [routerLinkActive]="['active']" >
-         <mat-icon style="font-size:20px;" class="iconL">
-        send_outline</mat-icon>Sent</a>
-      
+<div class="mainColor"></div>
+<mat-sidenav-container  class="sidenav-container"x>
+      <mat-sidenav  #drawer class="sidenav" fixedInViewport
+          [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+          [mode]="(isHandset$ | async) ? 'over' : 'side'"
+          [opened]="(isHandset$ | async) === false">
+          
+            <mat-nav-list >
+              <img class="logo"src="../../assets/images/Logo.png" >
+                <a  mat-list-item>   
+                  <button  class="button1" mat-raised-button style="background-color:#226fb4;" (click)="onCreate()">
+                  <mat-icon>add_outline</mat-icon>Compose</button>
+                </a>
+                <mat-toolbar   mat-list-item> <div  class="title">
+                  Folders
+                </div></mat-toolbar>
 
+                <a *ngFor="let item of nav"
+                mat-list-item   routerLink="{{item.link}}"
+                [routerLinkActive]="['active']" 
+                [routerLinkActiveOptions]="{exact:item.exact}">
+                  <mat-icon  class="iconL">
+                {{item.icon}}</mat-icon>{{item.name}}
+                </a>
+
+                <mat-toolbar   mat-list-item> <div  class="title">
+                  Filter
+                </div></mat-toolbar>
+                <a 
+                mat-list-item   routerLink="/Reclassify"
+                [routerLinkActive]="['active']" 
+                >
+                  <mat-icon  class="iconL">
+                    hourglass_top</mat-icon>Reclassify
+                </a>
+
+                <mat-toolbar   mat-list-item> <div  class="title">
+                  Labels
+                </div></mat-toolbar>
+                
+                
+                <app-nav-tree></app-nav-tree>
+            </mat-nav-list>
+            </mat-sidenav>
+
+      <mat-sidenav-content >
         
-      <a mat-list-item    [routerLinkActive]="['active']" >
-        <mat-icon style="font-size:20px;" class="iconL">
-          access_time</mat-icon>Scheduled </a>
-
-        <a mat-list-item   routerLink="/Draft" [routerLinkActive]="['active']" >
-          <mat-icon style="font-size:20px;" class="iconL">
-            <mat-icon>drafts</mat-icon></mat-icon>Draft</a>
-
-      <a routerLink="/Trash" mat-list-item [routerLinkActive]="['active']" ><mat-icon class="iconL">delete_outline</mat-icon>Trash</a>
-     
-      <mat-toolbar class="title"mat-list-item>Filter</mat-toolbar>
-      <a mat-list-item  routerLink="/Star" [routerLinkActive]="['active']" routerLinkActiveOptions="{exact : true}">
-           <mat-icon class="iconL" ><span style="color:#DAA520;">star_outline</span></mat-icon>Starred</a>
- 
-      <a mat-list-item   routerLink="/Important" [routerLinkActive]="['active']" >
-         <mat-icon style="font-size:20px;" class="iconL">
-          <span style="color:darksalmon;font-size:20px;">  label_outline</span></mat-icon>Important</a>
-      <mat-toolbar   mat-list-item> <div  class="title">Important</div></mat-toolbar>
+        <mat-toolbar class="toolbarstyle" >
+          
+            <button
+            type="button"
+            aria-label="Toggle sidenav"
+            mat-icon-button
+            (click)="drawer.toggle()"
+            *ngIf="isHandset$ | async"
+            class="toolbarstylebutton"
+          >
+            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+          </button>
+        </mat-toolbar>
       
-    <!--  <a mat-list-item routerLink="emails/Product/Debt collection"   [routerLinkActive]="['active']"> 
-        <mat-icon class="iconL" class="red" style="font-size:20px;">label_outline</mat-icon>Product</a>
-      <a mat-list-item routerLink="/emails/Label2"   [routerLinkActive]="['active']">
-         <mat-icon class="iconL"class="green" style="font-size:20px;">label_outline</mat-icon>Issue</a>-
-     <app-tree></app-tree> -->
-     <app-nav-tree></app-nav-tree>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content style="border-color:#3f51b5">
-    <mat-toolbar color="primary" style="border-color:#3f51b5">
-      <button
-      type="button"
-      aria-label="Toggle sidenav"
-      mat-icon-button
-      (click)="drawer.toggle()"
-      *ngIf="isHandset$ | async">
-      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-    </button>
+         
 
-   <!--   <mat-form-field class="example-form-field">
-        <input matInput type="text"  placeholder="Search" (keyup)="applyFiler()">
-        <button mat-button  matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" click="searchClear()">
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-form-field>-->
-
-    </mat-toolbar>
-   
     
-    <!-- Add Content Here -->
+        <!-- Add Content Here -->
   
-    <div style="height: 90%;">
-      <div style="background-color: #fff;height:60px;">
-        <div fxFlex="90%" style="background-color: #fff; "></div>
-        <div fxFlex="10%" style="background-color: primary;background-color:  #3f51b5;"></div>
-      </div>
-  <router-outlet></router-outlet>
-</div>
-<!---- <app-email></app-email>-->
-  </mat-sidenav-content>
+       
+        <div style="height: 90%;">
+         <!-- <div style="background-color: #fff;height:60px;">
+            <div fxFlex="90%" style="background-color: #fff; "></div>
+            <div fxFlex="10%" style="background-color: primary;background-color:  #226fb4;"></div>
+           </div>-->
+           <router-outlet></router-outlet>
+
+        </div>
+       <!---- <app-email></app-email>-->
+    </mat-sidenav-content>
 </mat-sidenav-container>

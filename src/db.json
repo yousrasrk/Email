@@ -1,802 +1,265 @@
 {
   "emails": [
     {
-      "id": 1,
-      "sender": "1@gmail.com",
-      "object": "content1 1",
-      "content": "I wrote to XXXX, asking them to stop calling. XXXX calls me every day. Each time, they use a different phone number",
-      "To": "me",
-      "folder": "Sent",
-      "filter": {
-        "important": 0,
-        "starred": 1
-      },
+      "sender": "info@mentis.io",
+      "object": "paying ",
+      "content": "my mortgage company which is meant to be paying my property taxes has not paid -/-/- and are late paying 1st installment of -/-/-, they are showing an amount of $5900.00 paid twice a year in the amount of $2900.00 each payment, they only paid $710.00 but they showed on my account they were releasing $2900.00, im now delinquent with the -/-/- payment which is short $2000.00 as i received bill for $340.00 which i personally paid. I have been emailing and calling them since -/-/- and i get no answer from them each time...",
+      "notif": 1602450312652,
+      "date": 1602450312646,
+      "lastUpdate": 1602544117920,
+      "seen": true,
+      "To": "comanyX@gmail.com",
       "category": {
         "dict": {
-          "Product": [
+          "Issue": [
             {
-              "Prediction": "Debt collection",
-              "Probability": 0.8808134468779927
+              "Prediction": "Loan servicing, payments, escrow account",
+              "Probability": 0.5268753286311539
             }
           ],
+          "Product": [
+            {
+              "Prediction": "Mortgage",
+              "Probability": 0.7159152590645848
+            }
+          ]
+        }
+      },
+      "firstName": "\tLea",
+      "lastName": "Ray",
+      "folder": "Sent",
+      "files": [],
+      "filter": 0,
+      "id": 1
+    },
+    {
+      "sender": "info@mentis.io",
+      "object": "stop calling",
+      "content": "I wrote to XXXX, asking them to stop calling. XXXX calls me every day. Each time, they use a different phone number",
+      "notif": 1602447232759,
+      "date": 1602447232759,
+      "lastUpdate": 1602447258862,
+      "seen": true,
+      "To": "comanyX@X.com",
+      "category": {
+        "dict": {
           "Issue": [
             {
               "Prediction": "Communication tactics",
               "Probability": 0.650247104365973
             }
+          ],
+          "Product": [
+            {
+              "Prediction": "Debt collection",
+              "Probability": 0.8808134468779927
+            }
           ]
         }
       },
-      "firstName": "Alice",
-      "lastName": "Flores",
-      "labelP": {
-        "Prediction": "Debt collection",
-        "Probability": 0.8808134468779927
-      }
+      "firstName": "\tAdam",
+      "lastName": "Henry",
+      "folder": "Sent",
+      "files": [],
+      "filter": 0,
+      "id": 2
     },
     {
-      "id": 2,
-      "firstName": "Alice",
-      "lastName": "Flores",
-      "sender": "2@gmail.com",
-      "object": "about account 2",
-      "content": "studies are expensive i have to work ",
+      "sender": "info@mentis.io",
+      "object": "",
+      "content": "i may be able to borrow money to help pay for university or college tuition fees and to help with living costs.",
+      "notif": 1602450174320,
+      "date": 1602450174320,
+      "lastUpdate": 1602450182466,
+      "seen": true,
+      "To": "2",
       "category": {
         "dict": {
-          "Product": [
-            {
-              "Prediction": "Mortgage",
-              "Probability": 0.33625502344038505
-            }
-          ],
           "Issue": [
             {
               "Prediction": "Can't repay my loan",
-              "Probability": 0.0913689613889744
-            }
-          ]
-        }
-      },
-      "filter": {
-        "important": 0,
-        "starred": 1
-      },
-      "labelP": {
-        "Prediction": "Student loan",
-        "Probability": 0.33625502344038505
-      },
-      "folder": "Inbox",
-      "To": "me",
-      "labelI": null
-    },
-    {
-      "id": 3,
-      "sender": "3@gmail.com",
-      "object": "object 3",
-      "content": "Mortage XXXXXXXXXX ",
-      "folder": "Inbox",
-      "firstName": "Alice",
-      "lastName": "Flores",
-      "filter": {
-        "Important": 0,
-        "Starred": 1
-      },
-      "category": {
-        "dict": {
-          "Product": [
-            {
-              "Prediction": "Mortgage",
-              "Probability": 0.5747524814371693
+              "Probability": 0.2326265079068898
             }
           ],
-          "Issue": [
-            {
-              "Prediction": "Loan servicing, payments, escrow account",
-              "Probability": 0.16228456730623292
-            }
-          ]
-        }
-      },
-      "labelP": {
-        "Prediction": "Mortgage",
-        "Probability": 0.5747524814371693
-      }
-    },
-    {
-      "id": 4,
-      "sender": "4@gmail.com",
-      "object": "object 4",
-      "content": "some debt still not ...XXXXXXXXXX",
-      "folder": "Inbox",
-      "firstName": "Alice",
-      "lastName": "Flores",
-      "category": {
-        "dict": {
-          "Product": [
-            {
-              "Prediction": "Debt collection",
-              "Probability": 0.6704252899306026
-            }
-          ],
-          "Issue": [
-            {
-              "Prediction": "Communication tactics",
-              "Probability": 0.14474413482185955
-            }
-          ]
-        }
-      },
-      "filter": {
-        "Important": 0,
-        "Starred": 1
-      },
-      "labelP": {
-        "Prediction": "Debt collection",
-        "Probability": 0.6704252899306026
-      }
-    },
-    {
-      "id": 5,
-      "sender": "5@gmail.com",
-      "object": "object 5",
-      "content": "some bank account still not ...XXXXXXXXXX",
-      "folder": "Inbox",
-      "category": {
-        "dict": {
-          "Product": [
-            {
-              "Prediction": "Bank account or service",
-              "Probability": 0.3589628432994486
-            }
-          ],
-          "Issue": [
-            {
-              "Prediction": "Account opening, closing, or management",
-              "Probability": 0.14414265168324109
-            }
-          ]
-        }
-      },
-      "filter": {
-        "Important": 0,
-        "Starred": 1
-      },
-      "labelP": {
-        "Prediction": "Bank account or service",
-        "Probability": 0.3589628432994486
-      }
-    },
-    {
-      "id": 6,
-      "filter": {
-        "Important": 0,
-        "Starred": 1
-      },
-      "category": {
-        "dict": {
-          "Product": [
-            {
-              "Prediction": "Debt collection",
-              "Probability": 0.6796033405113625
-            }
-          ],
-          "Issue": [
-            {
-              "Prediction": "Attempts to collect debt not owed",
-              "Probability": 0.23524158989992525
-            }
-          ]
-        }
-      },
-      "sender": "6@gmail.com",
-      "object": "object 6",
-      "content": "credit reporting  X ",
-      "folder": "Trash",
-      "labelP": {
-        "Prediction": "Debt collection",
-        "Probability": 0.6796033405113625
-      }
-    },
-    {
-      "id": 7,
-      "sender": "7@gmail.com",
-      "object": "object 7",
-      "content": "credit card ...XXXXXXXXXX",
-      "folder": "Inbox",
-      "firstName": "Alice",
-      "lastName": "Flores",
-      "category": {
-        "dict": {
-          "Product": [
-            {
-              "Prediction": "Credit card",
-              "Probability": 0.42471191070746067
-            }
-          ],
-          "Issue": [
-            {
-              "Prediction": "Incorrect information on credit report",
-              "Probability": 0.12445796328580148
-            }
-          ]
-        }
-      },
-      "filter": {
-        "Important": 0,
-        "Starred": 0
-      },
-      "labelP": {
-        "Prediction": "Credit card",
-        "Probability": 0.42471191070746067
-      }
-    },
-    {
-      "id": 8,
-      "sender": "8@gmail.com",
-      "object": "object 8",
-      "content": "some debt still not ...Mortage",
-      "folder": "Inbox",
-      "firstName": "Alice",
-      "lastName": "Flores",
-      "category": {
-        "dict": {
-          "Product": [
-            {
-              "Prediction": "Mortgage",
-              "Probability": 0.48593981730459085
-            }
-          ],
-          "Issue": [
-            {
-              "Prediction": "Loan servicing, payments, escrow account",
-              "Probability": 0.21612421621495181
-            }
-          ]
-        }
-      },
-      "filter": {
-        "Important": 0,
-        "Starred": 0
-      },
-      "labelP": {
-        "Prediction": "Mortgage",
-        "Probability": 0.48593981730459085
-      }
-    },
-    {
-      "id": 9,
-      "sender": "9@gmail.com",
-      "object": "object 9",
-      "content": "communication ta ...XXXXXXXXXX",
-      "folder": "Inbox",
-      "firstName": "Alice",
-      "lastName": "Flores",
-      "category": {
-        "dict": {
-          "Product": [
-            {
-              "Prediction": "Debt collection",
-              "Probability": 0.5706605726427131
-            }
-          ],
-          "Issue": [
-            {
-              "Prediction": "Communication tactics",
-              "Probability": 0.22908774091110545
-            }
-          ]
-        }
-      },
-      "filter": {
-        "Important": 0,
-        "Starred": 0
-      },
-      "labelP": {
-        "Prediction": "Debt collection",
-        "Probability": 0.5706605726427131
-      }
-    },
-    {
-      "id": 10,
-      "sender": "object 10",
-      "object": "about account10",
-      "content": "some debt still not ...Credit reporting",
-      "folder": "Inbox",
-      "firstName": "Alice",
-      "lastName": "Flores",
-      "category": {
-        "dict": {
-          "Product": [
-            {
-              "Prediction": "Debt collection",
-              "Probability": 0.8091660585343331
-            }
-          ],
-          "Issue": [
-            {
-              "Prediction": "Cont'd attempts collect debt not owed",
-              "Probability": 0.2809407993206407
-            }
-          ]
-        }
-      },
-      "filter": {
-        "Important": 0,
-        "Starred": 0
-      },
-      "labelP": {
-        "Prediction": "Debt collection",
-        "Probability": 0.8091660585343331
-      }
-    },
-    {
-      "id": 11,
-      "firstName": "Alice",
-      "lastName": "Flores",
-      "filter": {
-        "Important": 0,
-        "Starred": 1
-      },
-      "sender": "object 11",
-      "object": "about account11",
-      "content": "some debt still not ...Credit reporting",
-      "category": {
-        "dict": {
-          "Product": [
-            {
-              "Prediction": "Debt collection",
-              "Probability": 0.8091660585343331
-            }
-          ],
-          "Issue": [
-            {
-              "Prediction": "Cont'd attempts collect debt not owed",
-              "Probability": 0.2809407993206407
-            }
-          ]
-        }
-      },
-      "labelP": {
-        "Prediction": "Debt collection",
-        "Probability": 0.8091660585343331
-      },
-      "labelI": null,
-      "folder": "Inbox",
-      "files": [
-        "moy.json",
-        "sum.ts",
-        "result.py"
-      ]
-    },
-    {
-      "id": 12,
-      "firstName": "Alice",
-      "lastName": "Flores",
-      "filter": {
-        "Important": 0,
-        "Starred": 1
-      },
-      "sender": "xx",
-      "object": "xx",
-      "content": "OOxx",
-      "To": "xx",
-      "folder": "Inbox",
-      "category": {
-        "dict": {
-          "Product": [
-            {
-              "Prediction": "Debt collection",
-              "Probability": 0.4196517396358085
-            }
-          ],
-          "Issue": [
-            {
-              "Prediction": "Incorrect information on credit report",
-              "Probability": 0.10947120710690411
-            }
-          ]
-        }
-      },
-      "labelP": {
-        "Prediction": "Debt collection",
-        "Probability": 0.4196517396358085
-      }
-    },
-    {
-      "sender": "aa",
-      "object": "aa",
-      "content": "aa",
-      "To": "aa",
-      "category": {
-        "dict": {
-          "Product": [
-            {
-              "Prediction": "Debt collection",
-              "Probability": 0.31458432866606134
-            }
-          ],
-          "Issue": [
-            {
-              "Prediction": "Incorrect information on credit report",
-              "Probability": 0.13650889030659225
-            }
-          ]
-        }
-      },
-      "firstName": "",
-      "lastName": "",
-      "folder": "Sent",
-      "id": 13,
-      "labelP": {
-        "Prediction": "Debt collection",
-        "Probability": 0.31458432866606134
-      }
-    },
-    {
-      "sender": "bb",
-      "object": "bbb",
-      "content": "bb",
-      "To": "bb",
-      "category": {
-        "dict": {
-          "Product": [
-            {
-              "Prediction": "Bank account or service",
-              "Probability": 0.4503100429052509
-            }
-          ],
-          "Issue": [
-            {
-              "Prediction": "Loan servicing, payments, escrow account",
-              "Probability": 0.18228109178896823
-            }
-          ]
-        }
-      },
-      "firstName": "",
-      "lastName": "",
-      "folder": "Sent",
-      "id": 14,
-      "labelP": {
-        "Prediction": "Bank account or service",
-        "Probability": 0.4503100429052509
-      }
-    },
-    {
-      "sender": "ss",
-      "object": "ss",
-      "content": "ss",
-      "To": "ss",
-      "category": {
-        "dict": {
-          "Product": [
-            {
-              "Prediction": "Credit reporting",
-              "Probability": 0.36907220707232075
-            }
-          ],
-          "Issue": [
-            {
-              "Prediction": "Incorrect information on credit report",
-              "Probability": 0.20223308556975347
-            }
-          ]
-        }
-      },
-      "firstName": "",
-      "lastName": "",
-      "folder": "Sent",
-      "id": 15,
-      "labelP": {
-        "Prediction": "Credit reporting",
-        "Probability": 0.36907220707232075
-      }
-    },
-    {
-      "sender": "rr",
-      "object": "rr",
-      "content": "rr",
-      "To": "rr",
-      "category": {
-        "dict": {
-          "Product": [
-            {
-              "Prediction": "Debt collection",
-              "Probability": 0.4196517396358085
-            }
-          ],
-          "Issue": [
-            {
-              "Prediction": "Incorrect information on credit report",
-              "Probability": 0.10947120710690411
-            }
-          ]
-        }
-      },
-      "firstName": "",
-      "lastName": "",
-      "folder": "Sent",
-      "id": 16,
-      "labelP": {
-        "Prediction": "Debt collection",
-        "Probability": 0.4196517396358085
-      }
-    },
-    {
-      "sender": "oo",
-      "object": "oo",
-      "content": "oo",
-      "To": "oo",
-      "category": {
-        "dict": {
-          "Product": [
-            {
-              "Prediction": "Debt collection",
-              "Probability": 0.3509449659144036
-            }
-          ],
-          "Issue": [
-            {
-              "Prediction": "Communication tactics",
-              "Probability": 0.08802798502155171
-            }
-          ]
-        }
-      },
-      "firstName": "",
-      "lastName": "",
-      "folder": "Sent",
-      "id": 17,
-      "labelP": {
-        "Prediction": "Debt collection",
-        "Probability": 0.3509449659144036
-      }
-    },
-    {
-      "sender": "mm",
-      "object": "mm",
-      "content": "mm",
-      "To": "mm",
-      "category": {
-        "dict": {
-          "Product": [
-            {
-              "Prediction": "Debt collection",
-              "Probability": 0.37886139689188836
-            }
-          ],
-          "Issue": [
-            {
-              "Prediction": "Incorrect information on credit report",
-              "Probability": 0.07810623606820824
-            }
-          ]
-        }
-      },
-      "firstName": "",
-      "lastName": "",
-      "folder": "Sent",
-      "id": 18,
-      "labelP": {
-        "Prediction": "Debt collection",
-        "Probability": 0.37886139689188836
-      }
-    },
-    {
-      "sender": "from me",
-      "object": "",
-      "content": "",
-      "To": "",
-      "category": {
-        "dict": {
-          "Product": [
-            {
-              "Prediction": "Debt collection",
-              "Probability": 0.4196517396358085
-            }
-          ],
-          "Issue": [
-            {
-              "Prediction": "Incorrect information on credit report",
-              "Probability": 0.10947120710690411
-            }
-          ]
-        }
-      },
-      "firstName": "",
-      "lastName": "",
-      "folder": "Draft",
-      "id": 19,
-      "labelP": {
-        "Prediction": "Debt collection",
-        "Probability": 0.4196517396358085
-      }
-    },
-    {
-      "sender": "mm",
-      "object": "",
-      "content": "",
-      "To": "",
-      "category": {
-        "dict": {
-          "Product": [
-            {
-              "Prediction": "Debt collection",
-              "Probability": 0.4196517396358085
-            }
-          ],
-          "Issue": [
-            {
-              "Prediction": "Incorrect information on credit report",
-              "Probability": 0.10947120710690411
-            }
-          ]
-        }
-      },
-      "firstName": "",
-      "lastName": "",
-      "folder": "Draft",
-      "id": 20,
-      "labelP": {
-        "Prediction": "Debt collection",
-        "Probability": 0.4196517396358085
-      }
-    },
-    {
-      "sender": "me",
-      "object": "",
-      "content": "",
-      "To": "1@gmail.com",
-      "folder": "Draft",
-      "id": 21,
-      "category": {
-        "dict": {
-          "Product": [
-            {
-              "Prediction": "Debt collection",
-              "Probability": 0.4196517396358085
-            }
-          ],
-          "Issue": [
-            {
-              "Prediction": "Incorrect information on credit report",
-              "Probability": 0.10947120710690411
-            }
-          ]
-        }
-      },
-      "labelP": {
-        "Prediction": "Debt collection",
-        "Probability": 0.4196517396358085
-      }
-    },
-    {
-      "sender": "me",
-      "object": "",
-      "content": "",
-      "To": "1@gmail.com",
-      "folder": "Draft",
-      "id": 22,
-      "category": {
-        "dict": {
-          "Product": [
-            {
-              "Prediction": "Debt collection",
-              "Probability": 0.4196517396358085
-            }
-          ],
-          "Issue": [
-            {
-              "Prediction": "Incorrect information on credit report",
-              "Probability": 0.10947120710690411
-            }
-          ]
-        }
-      },
-      "labelP": {
-        "Prediction": "Debt collection",
-        "Probability": 0.4196517396358085
-      }
-    },
-    {
-      "sender": "me",
-      "object": "about account 2",
-      "content": "studies are expensive i have to work ",
-      "To": "",
-      "folder": "Draft",
-      "id": 23,
-      "category": {
-        "dict": {
           "Product": [
             {
               "Prediction": "Student loan",
-              "Probability": 0.33625502344038505
-            }
-          ],
-          "Issue": [
-            {
-              "Prediction": "Can't repay my loan",
-              "Probability": 0.0913689613889744
+              "Probability": 0.6493752263611808
             }
           ]
         }
       },
-      "labelP": {
-        "Prediction": "Student loan",
-        "Probability": 0.33625502344038505
-      }
+      "firstName": "Antoine",
+      "lastName": "Smith",
+      "folder": "Sent",
+      "files": [],
+      "filter": 0,
+      "id": 3
+    },
+    {
+      "sender": "Mentis@gmail.com",
+      "object": "stop calling",
+      "content": "I wrote to XXXX, asking them to stop calling. XXXX calls me every day. Each time, they use a different phone number",
+      "notif": 1602451067276,
+      "date": 1602451067276,
+      "lastUpdate": 1602451107611,
+      "seen": true,
+      "To": "mentis@consulting.bi",
+      "category": {
+        "dict": {
+          "Issue": [
+            {
+              "Prediction": "Communication tactics",
+              "Probability": 0.650247104365973
+            }
+          ],
+          "Product": [
+            {
+              "Prediction": "Debt collection",
+              "Probability": 0.8808134468779927
+            }
+          ]
+        }
+      },
+      "firstName": "Arthur",
+      "lastName": "Ray",
+      "folder": "Inbox",
+      "files": [],
+      "filter": 0,
+      "id": 5
+    },
+    {
+      "sender": "info@mentis.io",
+      "object": "credit cards types",
+      "content": "What type of credit card you offering",
+      "notif": 1602451673908,
+      "date": 1602451673908,
+      "lastUpdate": 1602638905266,
+      "seen": false,
+      "To": "Cashmoney.org",
+      "category": {
+        "dict": {
+          "Issue": [
+            {
+              "Prediction": "Attempts to collect debt not owed",
+              "Probability": 0.09844486606612607
+            }
+          ],
+          "Product": [
+            {
+              "Prediction": "Credit card",
+              "Probability": 0.52206168368536
+            }
+          ]
+        }
+      },
+      "firstName": "Antoine",
+      "lastName": "Henry",
+      "folder": "Draft",
+      "files": [],
+      "filter": 0,
+      "id": 6
+    },
+    {
+      "sender": "info@mentis.io",
+      "object": "",
+      "content": "@@",
+      "notif": 1602638908004,
+      "date": 1602638908004,
+      "lastUpdate": 1602638917652,
+      "seen": true,
+      "To": "",
+      "category": {
+        "dict": {
+          "Issue": [
+            {
+              "Prediction": "Incorrect information on credit report",
+              "Probability": 0.10947120710690411
+            }
+          ],
+          "Product": [
+            {
+              "Prediction": "Debt collection",
+              "Probability": 0.4196517396358085
+            }
+          ]
+        }
+      },
+      "firstName": "Arthur",
+      "lastName": "Washington",
+      "folder": "Trash",
+      "files": [],
+      "filter": 0,
+      "id": 7
     }
   ],
   "Classification": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Product",
+      "notif": 0,
       "children": [
         {
-          "name": "Bank account or service",
-          "children": null
+          "name": "Debt collection",
+          "children": [],
+          "notif": 0
         },
         {
           "name": "Student loan",
-          "children": null
-        },
-        {
-          "name": "Debt collection",
-          "children": null
-        },
-        {
-          "name": "Debt collection",
-          "children": null
+          "children": [],
+          "notif": 0
         },
         {
           "name": "Mortgage",
-          "children": null
+          "children": [],
+          "notif": 0
         },
         {
           "name": "Credit card",
-          "children": null
-        },
-        {
-          "name": "Credit reporting",
-          "children": null
+          "children": [],
+          "notif": 0
         }
       ]
     },
     {
       "id": 2,
       "name": "Issue",
+      "notif": 0,
       "children": [
         {
           "name": "Attempt to collect various debts",
-          "children": null
+          "children": [],
+          "notif": 0
         },
         {
           "name": "Communication tactics",
-          "children": null
-        },
-        {
-          "name": "Loan servicing, payments, escrow account",
-          "children": null
-        },
-        {
-          "name": "Attempts to collect debt not owed",
-          "children": null
-        },
-        {
-          "name": "Cont'd attempts collect debt not owed",
-          "children": null
-        },
-        {
-          "name": "Incorrect information on credit report",
-          "children": null
+          "children": [],
+          "notif": 0
         },
         {
           "name": "Can't repay my loan",
-          "children": null
+          "children": [],
+          "notif": 0
         },
         {
-          "name": "Account opening, closing, or management",
-          "children": null
+          "name": "Loan servicing, payments, escrow account",
+          "children": [],
+          "notif": 0
+        },
+        {
+          "name": "Attempts to collect debt not owed",
+          "children": [],
+          "notif": 0
+        },
+        {
+          "name": "Incorrect information on credit report",
+          "children": [],
+          "notif": 0
+        },
+        {
+          "name": "Cont'd attempts collect debt not owed",
+          "children": [],
+          "notif": 0
         }
       ]
     }

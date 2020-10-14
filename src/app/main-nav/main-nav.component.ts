@@ -4,11 +4,19 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Routes, RouterModule } from '@angular/router';
 import { MatDialog, MatDialogConfig,MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {NewEmailComponent} from '../new-email/new-email.component';
 import { EmailService } from '../services/email.service'
-import { EmailComponent } from '../email/email.component';
 import{ FormBuilder,FormGroup,FormControl, RequiredValidator,ReactiveFormsModule} from "@angular/forms";
 import { Email } from '../models/Email.models'
+import{ComposeEmailComponent} from '../compose-email/compose-email.component'
+import { ObjDictionary } from '../models/Dictionary.models';
+
+interface navbar
+{
+  link:string,
+  name:string,
+  exact:boolean,
+  icon:string
+}
 
 @Component({
   selector: 'app-main-nav',
@@ -19,34 +27,64 @@ export class MainNavComponent {
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
-      map(result => result.matches),
+     map(result => result.matches),
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver,
-    private dialog:MatDialog,
-     private emailService:EmailService,
-     private email:EmailComponent
+  constructor(private breakpointObserver: BreakpointObserver,private emailService:EmailService,
+    private dialog:MatDialog, )
+     {}
 
-    ) {}
-    @Input() searchKey:string;
+  //navbar 
+  nav:navbar[]=[
+       {
+          link:'/folder/Inbox',
+          name:'Inbox',
+          exact:true,
+          icon:'inbox_outline'
+          
+       },
+       {
+        link:'/folder/Sent',
+        name:'Sent',
+        exact:false,
+        icon:'send_outline'
+       },
+       {
+        link:'/folder/Draft',
+        name:'Draft',
+        exact:false,
+        icon:'drafts'
+       },
+       {
+        link:'/folder/Trash',
+        name:'Trash',
+        exact:false,
+        icon:'delete_outline'
+       },
+     ];
+   
 
-  matDialogRef:MatDialogRef<EmailComponent>
+     onCreate()//compose email
+     {
+       let id:number
+       let category:ObjDictionary=new ObjDictionary({});
+       
+       let date = Date.now();
+       let lastUpdate=Date.now()
+       let email=new Email(id,"info@Mentis.io","","",date,lastUpdate,0,false,"",category,this.emailService.PickRandom(this.emailService.FirstName),this.emailService.PickRandom(this.emailService.LasttName),"",[],0)
 
-onCreate()//compose email
-{
-  this.emailService.initializeFormGroup();
-  const dialogConfig= new MatDialogConfig();
-
-  dialogConfig.disableClose= false;
-
-  dialogConfig.autoFocus= true;
-  /*dialogConfig.width= "50%";*/
-/*  dialogConfig.position = {
-    'top': '0',
-    left: '0'
-};*/
-  this.dialog.open(NewEmailComponent,dialogConfig);
-}
+       const dialogConfig= new MatDialogConfig();
+       dialogConfig.disableClose= false;
+       dialogConfig.autoFocus= true;
+       this.dialog.open(ComposeEmailComponent ,{
+        data: {
+        email
+        }
+         });
+        dialogConfig
+         
+     }
+     
 
 }

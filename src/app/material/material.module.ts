@@ -8,7 +8,6 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {CdkScrollableModule} from '@angular/cdk/scrolling';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
-import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -16,8 +15,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';  
 import {MatTreeModule} from '@angular/material/tree';
-
+import {MatBadgeModule} from '@angular/material/badge';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 const matetials=[
   MatButtonModule,
@@ -28,7 +30,6 @@ const matetials=[
   CdkScrollableModule,
   MatCardModule,
   MatDividerModule,
-  FlexLayoutModule,
   MatSidenavModule,
   MatListModule,
   MatDialogModule,
@@ -36,7 +37,13 @@ const matetials=[
   MatInputModule,
   ReactiveFormsModule,
   MatTreeModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatBadgeModule,
+  DragDropModule,
+  FlexLayoutModule,
+  MatProgressBarModule
+
+
   
 ]
 @NgModule({

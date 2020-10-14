@@ -1,0 +1,24 @@
+.container1
+{
+    height:100%;background-color: #ffffff;
+}
+.containerHeight
+{
+    height:100%;
+}
+.borderstyle
+{
+    border:1px solid #E0E0E0; 
+}
+.folder
+{
+    padding:10px;margin-bottom:-5px;color:#a0a1a3;margin-left:5px;
+}
+.fx
+{
+    height:100%;border:1px solid #E0E0E0;
+}
+.fxcolor
+{
+    background-color: #fff;
+}

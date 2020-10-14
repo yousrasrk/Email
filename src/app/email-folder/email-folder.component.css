@@ -1,0 +1,16 @@
+.fclayout
+{
+    height:100%;background-color: #ffffff;
+}
+.brderStyle
+{
+    border:1px solid #E0E0E0; 
+}
+.folderName
+{padding:10px;margin-bottom:-5px;color:#a0a1a3;margin-left:5px;}
+
+.fxstyle{
+    height:100%;border:1px solid #E0E0E0;
+}
+.fxcolor
+{background-color: #fff;}

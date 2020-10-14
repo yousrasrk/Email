@@ -1,182 +1,130 @@
-import { Component, OnInit,Input } from '@angular/core';
-import { EmailService } from '../services/email.service';
-import { ActivatedRoute,Router ,Params} from '@angular/router';
+import { Component, OnInit ,Injectable} from '@angular/core';
 import {Email} from '../models/Email.models';
 import { switchMap, debounceTime, catchError } from 'rxjs/operators';
-import {ApiService} from '../api.service'
-import { Dictionary,ObjDictionary } from '../models/Dictionary.models';
-import {Label} from '../models/Label.models'
-import {  throwError } from 'rxjs';
-import { EmailComponent } from '../email/email.component';
-
+import { ActivatedRoute,Router ,Params} from '@angular/router';
+import { EmailService } from '../services/email.service';
+import{LabelsService} from '../services/labels.service';
+import {NavTreeComponent} from '../nav-tree/nav-tree.component'
+import { ComposeEmailComponent } from '../compose-email/compose-email.component';
 import { MatDialog, MatDialogConfig,MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {NewEmailComponent} from '../new-email/new-email.component';
-import {NewEmail2Component} from '../new-email2/new-email2.component';
+import { ToastService } from '../services/toast.service';
+import { ObjDictionary } from '../models/Dictionary.models';
 
-import{ FormBuilder,FormGroup,FormControl, RequiredValidator,ReactiveFormsModule} from "@angular/forms";
+export class Node {
+  children: Node[];
+  name:string;
+  notif:number
+}
 @Component({
   selector: 'app-single-email',
   templateUrl: './single-email.component.html',
   styleUrls: ['./single-email.component.css']
 })
+@Injectable()
+
 export class SingleEmailComponent implements OnInit {
- emails :any ;
-content:string="hi";
-category =new ObjDictionary({});
-@Input()object:string="about smth";
-files:string[]= ["smth1","smth2"];    
-@Input()sender:string;
-id:number= 1    
-@Input()email:Email;
-star:number=0;
-id1: any;
+  email:Email
+  detail :Email;
+  Showdetail:string[]=[];
+  showme:boolean=false;
+  hideme:boolean=true;
+  value:string="Show Details";
+  Folder:string[]=['Inbox','Sent','Draft','Trash']
   constructor(
-    private emailService : EmailService,
+    private EmailService : EmailService,
     private route:ActivatedRoute,
-    private router:Router,
-    private apiservice :ApiService,
-    private dialog:MatDialog,
-
-  ) { }
-  matDialogRef:MatDialogRef<EmailComponent>
-
-   email1:Email;
-   U :ObjDictionary=new ObjDictionary({});
-   me:ObjDictionary=new ObjDictionary({});
-   obj4:any
-   onCreate1(Email :Email  )
-{let s1:string; let s2:string;
-  s2=Email.sender;
-  s1=Email.To
-  this.emailService.initializeFormGroup3(s1,s2);
-  const dialogConfig= new MatDialogConfig();
-
-  dialogConfig.disableClose= false;
-
-  dialogConfig.autoFocus= true;
-  /*dialogConfig.width= "50%";*/
-/*  dialogConfig.position = {
-    'top': '0',
-    left: '0'
-};*/
-  this.dialog.open(NewEmail2Component,dialogConfig);
-}
-onCreate2(Email :Email )
-{let s1:string; let s2:string;
-  s2="";
-  s1=Email.To
-  this.emailService.initializeFormGroup2(s1,s2,Email);
-  const dialogConfig= new MatDialogConfig();
-
-  dialogConfig.disableClose= false;
-
-  dialogConfig.autoFocus= true;
-  /*dialogConfig.width= "50%";*/
-/*  dialogConfig.position = {
-    'top': '0',
-    left: '0'
-};*/
-  this.dialog.open(NewEmail2Component,dialogConfig);
-}
-delete(Email:Email)
-{
-  Email.folder="Trash"
-  this.emailService.update(Email)
-}
-SendTo(Email : Email,s:string){
-  Email.folder=s
-  console.log("update folder")
-  console.log("Email")
-  this.emailService.update1(Email)
-}
+    private navTreeComponent:NavTreeComponent,
+    private LabelsService:LabelsService,
+    private ComposeEmailComponent:ComposeEmailComponent,
+    private dialog:MatDialog, 
+    private ToastService:ToastService,
+    public _router: Router,
+  ) { 
+  }
 
 
-SendToLabel(Email : Email,s:string)
-{
-  Email.category.dict['Product'][0].Prediction=s;
-  this.emailService.update1(Email)
-
-}
-/*starred( Email:Email ,s:number)
-{
-let n=s;
- if(n==1)
- {
-   n=0;
-  
-  this.emailService.update2(Email ,n)
- }
- 
-else if(n==0)
- {
-  n=1;
-  
-  this.emailService.update2(Email ,n)
- }
- 
-}*/
-getColor(n:number):string
-{
- if(n==1)
- {
-   return "#DAA520";
- }
- if(n==0)
- {
-   return "black";
- }
-}
   ngOnInit(): void {
-
-   
-   this.getOne();
-  /* this.id1=this.route.snapshot.params['id'];
-    console.log(this.id1);*/
-    
-   
-  }
-  getOne()
-  {
-    
-    
-    let obj4 :Email;
-
-  this.route.params.pipe(
-  switchMap((params: Params) => this.emailService.getOneEmail(+params['id']))
-     
-    )
-    .subscribe((data:Email)=> 
-
-      {
-        
-        this.email1 = data
-        console.log("this.email11111111111111");
-        console.log(data);
-        
-      }  
+          //get email
       
-      );
+           this.getData();    
+           
   }
+  getData()
+{
+  this.route.data.subscribe((data: { email: Email }) => {
+    this.email = data.email;
+    this.getSubLabelP()
+    this.getSubLabelI()
+    this.email.seen=true;
+   if(this.email.notif>0)
+{
+
+    this.navTreeComponent.getNode(1).subscribe(data1=>
+      {
+        if(data1.notif>0)//if notif >0 when opened notif -=1 
+        {
+         if(data1.children.find(FileNode => FileNode.name==this.email.category.dict["Product"][0].Prediction)
+         && data1.children.find(FileNode => FileNode.notif > 0))
+           {
+            this.navTreeComponent.updateNotif1(1,1,this.email.category.dict["Product"][0].Prediction)
+            this.email.notif-=1;
+
+           }
+        }
+      })
+      this.navTreeComponent.getNode(2).subscribe(data1=>
+        {
+          if(data1.notif>0)
+          {
+            //this.navTreeComponent.updatParentNotif(1,-1)
+           if(data1.children.find(FileNode => FileNode.name==this.email.category.dict["Issue"][0].Prediction)
+           && data1.children.find(FileNode => FileNode.notif > 0))
+             {
+              this.navTreeComponent.updateNotif1(2,1,this.email.category.dict["Issue"][0].Prediction)
+              this.email.notif-=1;
+
+             }
+            
+
+          }
+        })
+      this.EmailService.update(this.email)
+    }
+    else
+    {
+      this.EmailService.update(this.email)
+    }
+    });
+ 
+}
+getColor(number:number):string
+{
+  return this.EmailService.getColor(number)
+}
+SendTo(Email : Email,folder1:string,folder:string){//change folder
   
-detail :Email;
-s:string[]=[];
-showme:boolean=false;
-hideme:boolean=true;
-value:string="Show Details";
+let oldFolder:string =folder1
+  Email.folder=folder
+  Email.lastUpdate=Date.now()
+  Email.seen=false;
+
+  this.EmailService.update(Email)
+
+ /*this._router.navigate(['../../'], { relativeTo: this.route })
+ .then(() => {
+    window.location.reload();
+  });*/
+this.ToastService.openSnackBar("folder updated","close")
+
+}
+
+
   showDetail()
   {
-    this.route.params.pipe(
-      switchMap((params: Params) => this.emailService.getOneEmail(+params['id']))
-     
-    )
-    .subscribe((data:Email)=> 
-
-      {
-        
-       this.detail = data
-       this.s.push(this.detail.sender);
-       this.s.push(this.detail.To);
-
+       this.route.data.subscribe((data: { email: Email }) => {
+       this.detail = data.email;
+       this.Showdetail.push(this.detail.sender);
+       this.Showdetail.push(this.detail.To);
        this.showme=!this.showme;
        this.hideme=!this.hideme;
        if(this.showme)
@@ -191,146 +139,173 @@ value:string="Show Details";
  
     
   }
-  
-    //this.emailService.getAPIData().subscribe(data => this.emails=data['emails'] );
 
 
- /*  this.route.params.pipe(
-      switchMap((params: Params) => this.emailService.getOneEmail(+params['id']))
-    )
-    .subscribe(data => this.email1 = data);
-  console.log(this.email1);
-  }*7
-  
-  /*getData()
+  NodeP:Node
+  childP:Node[]
+  getSubLabelP()
   {
-    this.emailService.getOneEmail(this.email).subscribe(res=>
-     {
-       console.log(res);
-     } )
-  }*/
+    this.LabelsService.getNode(1).subscribe((data:Node)=>
+    {
+     this.NodeP=data
+     this.childP=data.children as Node[]
+    
+    });
 
-  getOneEmail(id)
-  {
-    this.emailService.getOneEmail(id).subscribe((data)=>{
-      console.log(data);
-      this.email =data;
-        })
   }
+  NodeI:Node
+  childI:Node[]
+  getSubLabelI()
+  {
+    this.LabelsService.getNode(2).subscribe((data:Node)=>
+    {
+     this.NodeI=data
+     this.childI=data.children as Node[]
+    
+    })
+
+  }
+
+  SendToLabel(Email:Email,id:number,subLabel:string)//update label
+  {
+    
+    if(id==1)
+    {
+      Email.category.dict["Product"][0].Prediction=subLabel
+      Email.category.dict["Product"][0].Probability=null
+
+      Email.seen=true
+      Email.lastUpdate=Date.now()
+      Email.seen=false;
+      Email.notif+=1;
+      this.EmailService.update(Email)
+      this.navTreeComponent.updateNotif(1,1,subLabel)
+    //  this._router.navigateByUrl(`emails/Product/${subLabel}`);
+    //  location.reload(); 
+   /* this._router.navigate(['../../'], { relativeTo: this.route })
+    .then(() => {
+    window.location.reload();
+  });*/
+    }
+    else if(id==2)
+    {
+      Email.category.dict["Issue"][0].Prediction=subLabel
+      Email.category.dict["Issue"][0].Probability=null
+
+      Email.seen=true
+      Email.lastUpdate=Date.now()
+      Email.notif+=1;
+
+      this.EmailService.update(Email)
+
+     
+     /* this.navTreeComponent.updateNotif(2,1,subLabel)
+      this._router.navigate(['../../'], { relativeTo: this.route })
+      .then(() => {
+      window.location.reload();
+    });*/
+
+    }
+    this.ToastService.openSnackBar("label updated","close")
+
+}
+
+  delete(Email:Email)
+  {
+    Email.lastUpdate=Date.now()
+    Email.seen=false;
+    
+    Email.folder="Trash"
+    this.EmailService.update(Email)
+    this._router.navigate(['../../'], { relativeTo: this.route })
+    .then(() => {
+  //  window.location.reload();
+  });
+  }
+
+  reply(email:Email)
+  {
+    
+    this.route.data.subscribe((data: { email: Email }) => {
+      let id:number
+      let category:ObjDictionary=new ObjDictionary({});
+         
+      let date = Date.now();
+      let lastUpdate=Date.now()
+      //  console.log("email"+email)
+    let email=new Email(id,"info@mentis.io","","",date,lastUpdate,0,false,data.email.sender,category,data.email.firstName,data.email.lastName,"")
+  const dialogConfig= new MatDialogConfig();
+  dialogConfig.disableClose= false;
+  dialogConfig.autoFocus= true;
+  this.dialog.open(ComposeEmailComponent ,{
+   data: {
+    email
+   }
+    });
+  dialogConfig
+    });
+    
+  }
+  forward(email:Email)
+  {
+    this.route.data.subscribe((data: { email: Email }) => {
+    let id:number
+    let category:ObjDictionary=new ObjDictionary({});
+       
+    let date = Date.now();
+    let lastUpdate=Date.now()
+
+  let email=new Email(id,"info@mentis.io",data.email.object,data.email.content,date,lastUpdate,0,false,"",category,this.EmailService.PickRandom(this.EmailService.FirstName),this.EmailService.PickRandom(this.EmailService.LasttName),"")
+  const dialogConfig= new MatDialogConfig();
+  dialogConfig.disableClose= false;
+  dialogConfig.autoFocus= true;
+  this.dialog.open(ComposeEmailComponent ,{
+   data: {
    
-  /*
-   this.route.params.pipe(
-      switchMap((params: Params) => this.emailService.getOneEmail(+params['id']))
-     
-    )
-    .subscribe((data:Email)=> 
-
-      {
-        
-        this.email1 = data
-        console.log("this.email11111111111111");
-        console.log(data);
-
-        //api 
+    email
+   }
+    });
+  dialogConfig
+  });
+}
 
 
+  Filter( Email:Email ,s:number)//send for reclassification
+{
+ let n=s;
+ if(n==1)
+ {
+   n=0;
+   Email.filter=n
 
+  this.EmailService.update(Email)
+  this.ToastService.openSnackBar("email sent to API","close")
 
-  let E: Email[]=[]
-        let c:Label[]
-        let d:Label;
-        this.apiservice.addComplaint1(   this.email1.content,(obj:ObjDictionary)=>
-        { this.U=obj
-          //   console.log(this.U.dict["Product"])
-         // console.log(this.U.dict.Product[0].Prediction)
-     let Y=new ObjDictionary({})
-     
-     Y=obj;
-     
-    
-        let c:Label[]
-         let g: Label[]
-         let f: Label[]
-         let e: Label[]
-         let  keysApi:string[]
-    
-         console.log("obbbjjjj11111111111111")
-         console.log(obj)
-              c=  this.U.dict["Product"]
-               console.log("c")
-               console.log(c)
+ }
+ 
+else if(n==0)
+ {
+  
+  n=1;
+  Email.filter=n;
+  Email.category=null
 
-               // calcul max product
-               let MaxP:Label
-             MaxP=c[0];
-             let resP :Label[]=[];
-            
-             for(var item1 in c)
-             {
-               if(c[item1].Probability > MaxP.Probability)
-               {
-                 MaxP=c[item1];
-               }
-             }
-             console.log("Mas")
-             console.log(MaxP);
-             resP.push(MaxP);
-             console.log("res;")
-             console.log(resP);
-             this.U.dict["Product"]=resP;
-             console.log("this.U.dict[Product]111111")
-             console.log( this.U.dict["Product"])
+  this.EmailService.update(Email)
+  this.ToastService.openSnackBar("folder updated","close")
 
+ }
+ 
+}
+getColorIcon(n:number):string
+{
+ if(n==1)
+ {
+   return "#DAA520";
+ }
+ if(n==0)
+ {
+   return "black";
+ }
+}
 
-
-             //Issue 
-             e=  this.U.dict["Issue"]
-             console.log("e")
-             console.log(e)
-             let MaxI:Label
-             MaxI=e[0];
-             let resI :Label[]=[];
-            
-             for(var item2 in e)
-             {
-               if(e[item2].Probability > MaxI.Probability)
-               {
-                 MaxI=e[item2];
-               }
-             }
-            console.log("Mas")
-             console.log(MaxI);
-             resI.push(MaxI);
-             console.log("resI;")
-             console.log(resI);
-             this.U.dict["Issue"]=resI;
-             console.log(" this.U.dict[Issue] 111111")
-             console.log( this.U.dict["Issue"])
-             console.log( "reeeeeeeeees111111")
-             console.log(this.U)
-        console.log("emaaaaaaaail item111111")
-     //   this.emails[item].category.dict=this.U.dict
-        console.log(  this.U.dict)
-        console.log("emaaaaaaaail item Prooooooood 111111")
-        this.email1.category=this.U
-       console.log(this.email1)
-       console.log("proooooooooooooood item Prooooooood 111111")
-       this.email1.labelP=this.U.dict["Product"][0]
-       console.log( this.email1.labelP)
-      //  console.log(  this.emails[item].category.dict["Product"][0].Prediction)
-        // this.emails[item].labelP= this.emails[item].category.dict["Product"][0]
-        console.log("emaaaaaaaaaaaaaaail111111")
-       console.log(this.email1)
-       console.log("emaaaaaaaaaaaaaaail reeess 111111")
-     console.log(this.email1)
-
-
-        }
-        );
-
-      
-      }  
-      
-      );
-*/
 }

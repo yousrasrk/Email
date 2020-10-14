@@ -1,27 +1,32 @@
-<mat-tree  [dataSource]="dataSource" [treeControl]="treeControl">
-    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
+
+  <mat-tree [dataSource]="dataSource"  [treeControl]="treeControl" cdkDropList (cdkDropListDropped)="drop($event)">
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding cdkDrag [cdkDragData]="node" (mouseenter)="dragHover(node)" (mouseleave)="dragHoverEnd()" (cdkDragStarted)="dragStart()" (cdkDragReleased)="dragEnd()">
       <button mat-icon-button disabled></button>
-     
-     <!--['/emails/Product',node.name]-->
-  
       <a mat-list-item [routerLink]="['/emails',getParentNode(node).name,node.name]"
-       style="font-size:15px;"  
-      [routerLinkActive]="['active']"> {{node.name}}</a>
-  
+        class="nodeName"  [routerLinkActive]="['active']"> 
+         {{node.name|sortDate}} 
+         <span *ngIf="node.notif >0" class="badge">
+             <span   span [matBadge]="node.notif" matBadgePosition="below before" matBadgeColor="accent"></span>
+          </span>
+      </a>
     </mat-tree-node>
   
-  
-    
-    <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
-      <button  mat-icon-button matTreeNodeToggle
+    <mat-tree-node *matTreeNodeDef="let node;when: hasChild " matTreeNodePadding cdkDrag [cdkDragData]="node" (mouseenter)="dragHover(node)" (mouseleave)="dragHoverEnd()" (cdkDragStarted)="dragStart()" (cdkDragReleased)="dragEnd()">
+      <button mat-icon-button matTreeNodeToggle
               [attr.aria-label]="'toggle ' + node.name">
-        <mat-icon  class="mat-icon-rtl-mirror">
+        <mat-icon class="mat-icon-rtl-mirror">
           {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
         </mat-icon>
       </button>
- 
-      {{node.name}}
-  
+     
+     
+      <mat-icon class="color">label_outlined</mat-icon>
+      {{node.name}} 
+      <span *ngIf="node.notif >0" class="badge">
+        <span   span [matBadge]="node.notif" matBadgePosition="below before" matBadgeColor="accent"></span>
+      
+       </span>
     </mat-tree-node>
-  </mat-tree>
+</mat-tree>
+  
   
